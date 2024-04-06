@@ -1,0 +1,14 @@
+na następne zajęcia zastanowić się jaką grę się chce napisać
+gdzie w czym, język i tak dalej
+założenia wybory gry
+uzgadniamy jaki algorytm będzie właściwy do rozwiązania konkretnego zadania
+jak na dziś, jedna gra na cały semestr
+czyli jedna może dwie gry realizujące konkretne algorytmy plus odpowiedź ustna z innych algorytmów
+zdaje się, że można zrobić A*
+
+lab 2
+
+lab 3
+algorytmy genetyczne
+
+lab 4
