@@ -30,7 +30,7 @@ public class Path : MonoBehaviour
         {
             calculated = false;
         }
-        
+
         if (controller.ready && calculated==false)
         {
             controller.blocks[XS, YS].GetComponent<tile>().setDistance(XK, YK);

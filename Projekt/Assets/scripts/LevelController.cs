@@ -1,11 +1,88 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
     private field[] fields;
+
+    public class PriorityQueu<T>
+    {
+        private class node
+        {
+            T value;
+            node next;
+            int priority;
+            public node(T value,int priority)
+            {
+                this.value = value;
+                this.priority = priority;
+            }
+            public void setNext(node next)
+            {
+                this.next = next;
+            }
+            public node getNext()
+            {
+                return this.next;
+            }
+            public T getValue()
+            {
+                return this.value;
+            }
+            public int getPriority()
+            {
+                return this.priority;
+            }
+        }
+        node head;
+        int size;
+        public PriorityQueu()
+        {
+            head = null;
+            size = 0;
+        }
+        public int getSize()
+        {
+            return this.size;
+        }
+        public void insert(T item, int priority)
+        {
+            this.size++;
+            node tmp = new node(item,priority);
+            if (head.getPriority() < priority)
+            {
+                tmp.setNext(head);
+                this.head = tmp;
+            }
+            else
+            {
+                node before = head;
+                node current = head.getNext();
+                while(current!=null && current.getPriority() > priority)
+                {
+                    before = current;
+                    current = current.getNext();
+                }
+                tmp.setNext(current);
+                before.setNext(tmp);
+            }
+        }
+        public T pull()
+        {
+            this.size--;
+            T item=this.head.getValue();
+            this.head=this.head.getNext();
+            return item;
+        }
+        public T peek()
+        {
+            T item = this.head.getValue();
+            return item;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +122,7 @@ public class LevelController : MonoBehaviour
 
     public List<Vector2> findPath(Vector2 start, Vector2 end)
     {
-       List<Vector2> path = new List<Vector2>();
+        List<Vector2> path = new List<Vector2>();
 
 
         return path;

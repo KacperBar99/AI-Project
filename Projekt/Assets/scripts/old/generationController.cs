@@ -35,8 +35,7 @@ public class generationController : MonoBehaviour
                 var tmp = Instantiate(block, new Vector2(i, j), Quaternion.identity, this.transform);
                 blocks[i, j] = tmp;
                 tmp.GetComponent<tile>().setCord(i, j);
-                tmp.GetComponent<tile>().X = i;
-                tmp.GetComponent<tile>().Y = j;
+                
                 
                 long v = los.losuj()%100;
                 //Debug.Log(v);
