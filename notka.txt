@@ -12,3 +12,13 @@ lab 3
 algorytmy genetyczne
 
 lab 4
+
+laby 5
+
+laby 6
+dla problemu xor sieć neuronowa ma przynajmniej 2 warstwy i na końcu oddaje liczbę rzeczywistą
+więc ma tylko jeden neuron wyjściowy, ale w niketórych środowiskach tak nie jest
+neurony korzystają z różnych funkcji, podziału na 0 lub 1 czy dowolny inny skok
+liniowa i sigmoidalna czyli klasy c nieskończoność
+są to klasy funkcji tylko a nie stałe
+jest taka funkcja Relu w jednym środowisku
