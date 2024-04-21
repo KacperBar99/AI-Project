@@ -8,90 +8,19 @@ public class LevelController : MonoBehaviour
 {
     private field[] fields;
 
-    public class PriorityQueu<T>
-    {
-        private class node
-        {
-            T value;
-            node next;
-            int priority;
-            public node(T value,int priority)
-            {
-                this.value = value;
-                this.priority = priority;
-            }
-            public void setNext(node next)
-            {
-                this.next = next;
-            }
-            public node getNext()
-            {
-                return this.next;
-            }
-            public T getValue()
-            {
-                return this.value;
-            }
-            public int getPriority()
-            {
-                return this.priority;
-            }
-        }
-        node head;
-        int size;
-        public PriorityQueu()
-        {
-            head = null;
-            size = 0;
-        }
-        public int getSize()
-        {
-            return this.size;
-        }
-        public void insert(T item, int priority)
-        {
-            this.size++;
-            node tmp = new node(item,priority);
-            if (head.getPriority() < priority)
-            {
-                tmp.setNext(head);
-                this.head = tmp;
-            }
-            else
-            {
-                node before = head;
-                node current = head.getNext();
-                while(current!=null && current.getPriority() > priority)
-                {
-                    before = current;
-                    current = current.getNext();
-                }
-                tmp.setNext(current);
-                before.setNext(tmp);
-            }
-        }
-        public T pull()
-        {
-            this.size--;
-            T item=this.head.getValue();
-            this.head=this.head.getNext();
-            return item;
-        }
-        public T peek()
-        {
-            T item = this.head.getValue();
-            return item;
-        }
-    }
 
     // Start is called before the first frame update
     void Start()
     {
+        //delete later
+        Application.targetFrameRate = -1;
+        QualitySettings.vSyncCount = 0;
+
+        Application.runInBackground = false;
         this.fields = this.GetComponentsInChildren<field>();
         foreach (field field in this.fields)
         {
             List<field> tmp = new List<field>();
-            field.setWeight(Random.Range(1,10));
             foreach (field field2 in this.fields)
             {
                 if(field2 != field)
@@ -110,6 +39,19 @@ public class LevelController : MonoBehaviour
                     field.setNeighbours(tmp.ToArray());
                 }
             }
+        }
+
+        //test kolejki
+        var queu = new PriorityQueu<field>();
+        for(int i=0;i<fields.Length;i++)
+        {
+            queu.insert(fields[i],i);
+            Debug.Log(i);
+        }
+        for(int i=0; i<fields.Length;i++)
+        {
+            var tmp = queu.pull();
+           
         }
         
     }
