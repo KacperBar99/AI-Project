@@ -54,7 +54,7 @@ public class PriorityQueu<T>
         }
         this.size++;
 
-        if (head.getPriority() < priority)
+        if (head.getPriority() > priority)
         {
             tmp.setNext(head);
             this.head = tmp;
@@ -63,7 +63,7 @@ public class PriorityQueu<T>
         {
             node before = head;
             node current = head.getNext();
-            while (current != null && current.getPriority() > priority)
+            while (current != null && current.getPriority() < priority)
             {
                 before = current;
                 current = current.getNext();
@@ -84,5 +84,16 @@ public class PriorityQueu<T>
     {
         T item = this.head.getValue();
         return item;
+    }
+    public void print()
+    {
+        node it = this.head;
+        string res="Kolejka ";
+        while (it != null)
+        {
+            res += " " + it.getPriority();
+            it = it.getNext();
+        }
+        Debug.Log(res);
     }
 }

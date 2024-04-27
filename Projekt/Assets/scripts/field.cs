@@ -9,6 +9,11 @@ public class field : MonoBehaviour
     private Vector2 position = Vector2.zero;
     [SerializeField]
     private int weight = 0;
+    [SerializeField]
+    private field parent = null;
+
+    public float costDistance;
+    public float cost;
 
 
     private field[] neighbours;
@@ -42,5 +47,13 @@ public class field : MonoBehaviour
     public field[] getNeighbours()
     {
         return this.neighbours;
+    }
+    public void setParent(field parent)
+    {
+        this.parent = parent;
+    }
+    public field getParent()
+    {
+        return this.parent;
     }
 }

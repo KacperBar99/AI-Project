@@ -19,7 +19,14 @@ public class Ghost : MonoBehaviour
     {
         if (did) return;
         var res = this.levelController.findPath(this.transform.position, this.player.position);
-        Debug.Log(res);
+        
         did = true;
+
+        var it = res;
+        while (it != null)
+        {
+            it.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            it = it.getParent();
+        }
     }
 }
