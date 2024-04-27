@@ -9,8 +9,8 @@ public class PriorityQueu<T>
     {
         T value;
         node next;
-        int priority;
-        public node(T value, int priority)
+        float priority;
+        public node(T value, float priority)
         {
             this.value = value;
             this.priority = priority;
@@ -27,7 +27,7 @@ public class PriorityQueu<T>
         {
             return this.value;
         }
-        public int getPriority()
+        public float getPriority()
         {
             return this.priority;
         }
@@ -43,7 +43,7 @@ public class PriorityQueu<T>
     {
         return this.size;
     }
-    public void insert(T item, int priority)
+    public void insert(T item, float priority)
     {
         node tmp = new node(item, priority);
         if (this.size == 0)

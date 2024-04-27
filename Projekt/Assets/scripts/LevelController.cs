@@ -40,20 +40,6 @@ public class LevelController : MonoBehaviour
                 }
             }
         }
-
-        //test kolejki
-        var queu = new PriorityQueu<field>();
-        for(int i=0;i<fields.Length;i++)
-        {
-            queu.insert(fields[i],i);
-            Debug.Log(i);
-        }
-        for(int i=0; i<fields.Length;i++)
-        {
-            var tmp = queu.pull();
-           
-        }
-        
     }
 
     // Update is called once per frame
@@ -62,11 +48,66 @@ public class LevelController : MonoBehaviour
         
     }
 
-    public List<Vector2> findPath(Vector2 start, Vector2 end)
+    public field findPath(Vector2 first, Vector2 end)
     {
-        List<Vector2> path = new List<Vector2>();
+        field start=null;
+        field target=null;
+        first = new Vector2 (Mathf.Round(first.x), Mathf.Round(first.y));
+        end = new Vector2(Mathf.Round(end.x), Mathf.Round(end.y));
+        foreach(var field in this.fields)
+        {
+            if(field.getPosition() == first)
+            {
+                start = field;
+                break;
+            }
+        }
+        foreach (var field in this.fields)
+        {
+            if (field.getPosition() == end)
+            {
+                target = field;
+                break;
+            }
+        }
+        var queu = new PriorityQueu<field>();
+        List<field> visited = new List<field>();
+        visited.Add(start);
+        queu.insert(start, this.getPriority(start.getPosition(),target.getPosition()));
+        while (queu.getSize() > 0)
+        {
+            field min = queu.pull();
+            var neighbours = min.getNeighbours();
+            foreach(var field in neighbours) 
+            {
+               
+                if (!visited.Contains(field))
+                {
+                    if (field == target) return field;
+                    else
+                    {
+                        Debug.Log(field);
+                        visited.Add(field);
+                        queu.insert(field, this.getPriority(field.getPosition(), target.getPosition()));
+                    }
+                }
+                
+            }
+        }
 
-
-        return path;
+        return null;
+    }
+    private float getPriority(Vector2 pos,Vector2 finish)
+    {
+        return Vector2.Distance(pos, finish);
+    }
+    public field getField(Vector2 position)
+    {
+        Vector2 toFind = new Vector2(Mathf.Round(position.x), Mathf.Round(position.y));
+        foreach(var field in fields)
+        {
+            if(field.getPosition() == toFind) return field;
+        }
+        return null;
     }
 }

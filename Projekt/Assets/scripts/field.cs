@@ -35,4 +35,12 @@ public class field : MonoBehaviour
     {
         return this.position;
     }
+    public int getWeight()
+    {
+        return this.weight;
+    }
+    public field[] getNeighbours()
+    {
+        return this.neighbours;
+    }
 }
