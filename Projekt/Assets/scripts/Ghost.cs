@@ -17,7 +17,7 @@ public class Ghost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (did) return;
+        this.levelController.SetDefaultColors();
         var res = this.levelController.findPath(this.transform.position, this.player.position);
         
         did = true;

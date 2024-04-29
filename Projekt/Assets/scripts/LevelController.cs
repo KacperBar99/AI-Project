@@ -126,4 +126,11 @@ public class LevelController : MonoBehaviour
         }
         return null;
     }
+    public void SetDefaultColors()
+    {
+        foreach(var field in fields)
+        {
+            field.backToDefault();
+        }
+    }
 }

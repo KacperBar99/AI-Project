@@ -15,6 +15,8 @@ public class field : MonoBehaviour
     public float costDistance;
     public float cost;
 
+    private Color defaultColor;
+    private SpriteRenderer sprite;
 
     private field[] neighbours;
 
@@ -23,6 +25,9 @@ public class field : MonoBehaviour
     private void Awake()
     { 
         this.position=this.transform.position;
+        this.sprite = this.gameObject.GetComponent<SpriteRenderer>();
+        this.defaultColor = sprite.color;
+        if (this.weight == 999) this.weight = int.MaxValue;
     }
 
     // Update is called once per frame
@@ -34,6 +39,11 @@ public class field : MonoBehaviour
     
     public void setNeighbours(field[] neighbours)
     {
+        List<field> tmp = new List<field>();
+        foreach(field field in neighbours)
+        {
+            if(field.weight!=int.MaxValue)tmp.Add(field);
+        }
         this.neighbours = neighbours;
     }
     public Vector2 getPosition()
@@ -55,5 +65,9 @@ public class field : MonoBehaviour
     public field getParent()
     {
         return this.parent;
+    }
+    public void backToDefault()
+    {
+        this.sprite.color = defaultColor;
     }
 }
