@@ -45,7 +45,10 @@ public class LevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     public field findPath(Vector2 first, Vector2 end)
@@ -54,6 +57,12 @@ public class LevelController : MonoBehaviour
         field target=null;
         first = new Vector2 (Mathf.Round(first.x), Mathf.Round(first.y));
         end = new Vector2(Mathf.Round(end.x), Mathf.Round(end.y));
+        foreach(field field in this.fields)
+        {
+            field.cost = 0;
+            field.costDistance = 0;
+            field.setParent(null);
+        }
         //finding start field
         foreach(var field in this.fields)
         {
@@ -76,13 +85,11 @@ public class LevelController : MonoBehaviour
         var queu = new PriorityQueu<field>();
         List<field> visited = new List<field>();
         visited.Add(start);
-        queu.insert(start, this.getPriority(start.getPosition(),target.getPosition(),start.cost));
+        queu.insert(start, this.getPriority(start.getPosition(),target.getPosition(),0));
         while (queu.getSize() > 0)
         {
-            //queu.print();
             field min = queu.pull();
             var neighbours = min.getNeighbours();
-            
             foreach (var field in neighbours) 
             {
                 if (!visited.Contains(field))
@@ -96,12 +103,11 @@ public class LevelController : MonoBehaviour
                     {
                         field.setParent(min);
                         field.cost = field.getWeight() + min.cost;
-                        visited.Add(min);
+                        visited.Add(field);
                         queu.insert(field, this.getPriority(field.getPosition(), target.getPosition(), field.cost));
                         field.costDistance=(this.getPriority(field.getPosition(), target.getPosition(), field.cost));
                     }
                 }
-                
             }
         }
 
