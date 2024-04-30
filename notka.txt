@@ -22,3 +22,9 @@ neurony korzystają z różnych funkcji, podziału na 0 lub 1 czy dowolny inny s
 liniowa i sigmoidalna czyli klasy c nieskończoność
 są to klasy funkcji tylko a nie stałe
 jest taka funkcja Relu w jednym środowisku
+
+
+coś o projekcie i przemyśleniach
+brak uwag xD
+jest git
+algorytm prawie cały zrobiony
