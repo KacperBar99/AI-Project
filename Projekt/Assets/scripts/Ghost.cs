@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,14 +11,16 @@ public class Ghost : MonoBehaviour
     private LevelController levelController;
     private float timeCounter;
     private bool triggered = false;
-    private float speed = 1.5f;
+    private float speed = 1f;
     private field currentField;
+    private List<field> path;
     // Start is called before the first frame update
     void Start()
     {
         this.player = GameObject.FindGameObjectWithTag("Player").transform;
         this.levelController = GameObject.FindGameObjectWithTag("GameController").GetComponent<LevelController>();
         this.timeCounter = 0.0f;
+        this.path = new List<field>();
     }
 
     // Update is called once per frame
@@ -26,23 +29,33 @@ public class Ghost : MonoBehaviour
         if (triggered) return;
         this.currentField = this.levelController.getField(this.transform.position);
         if (this.currentField == null) Debug.Log("Hejo");
-        if (this.currentField.getWeight() > 1) this.speed = 1.0f;
+        if (this.currentField.getWeight() > 1) this.speed = 1f;
         else this.speed = 1.5f;
         this.transform.position += this.forward * Time.deltaTime * this.speed;
+        for (int i=0;i<this.path.Count;i++)
+        {
+            if (i<this.path.Count-1 && this.path[i+1] == this.currentField)
+            {
+                this.forward = this.path[i].getPosition() - this.currentField.getPosition();
+                break;
+            }
+        }
         if (this.timeCounter >= this.pathTime)
         {
             this.timeCounter = 0.0f;
             var res = this.levelController.findPath(this.transform.position, this.player.position);
-
+            this.path.Clear();
             var it = res;
             while (it != null)
             {
-                it = it.getParent();
-                if (it.getParent().getParent() == null)
+                this.path.Add(it);
+                //Kidna working
+                /*if(it.getParent()!=null && it.getParent().getPosition() == this.currentField.getPosition())
                 {
-                    this.forward = it.getPosition()-this.currentField.getPosition();
+                    this.forward = it.getPosition() - this.currentField.getPosition();
                     break;
-                }
+                }*/
+                it = it.getParent();
             }
         }
         else
