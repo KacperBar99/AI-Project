@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.levelController=GameObject.FindGameObjectWithTag("GameController").GetComponent<LevelController>();
+        this.levelController=GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();
         this.text.text = "0";
         this.points = 0;
         this.powerUpTime = 0.0f;

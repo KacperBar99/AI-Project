@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     [SerializeField]
     private float defaultTimeScale = 1.0f;//poziom trudnoœci i tak dalej
-    private bool isPaused = false;//pauza 
+    private bool isPaused = false;//pauza
+    [SerializeField]
+    private List<Ghost> ghosts;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,18 @@ public class GameController : MonoBehaviour
             {
                 Time.timeScale = this.defaultTimeScale;
             }
+        }
+        foreach(Ghost ghost in this.ghosts)
+        {
+            if(ghost == null)
+            {
+                this.ghosts.Remove(ghost);
+                break;
+            }
+        }
+        if(this.ghosts.Count == 0)
+        {
+            SceneManager.LoadScene("Game", LoadSceneMode.Single);
         }
     }
 }
