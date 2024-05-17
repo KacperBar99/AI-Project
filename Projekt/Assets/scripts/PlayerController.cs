@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         }
 
         this.currentField = this.levelController.getField(this.transform.position);
-        if (this.currentField == null) Debug.Log("Hejo");
+        if (this.currentField == null) Debug.Log("Mamy problem");
         if (this.currentField.getWeight() > 1) this.speed = 1.0f;
         else this.speed = 2.0f;
         this.transform.position += this.forward*Time.deltaTime*this.speed;

@@ -28,3 +28,10 @@ coś o projekcie i przemyśleniach
 brak uwag xD
 jest git
 algorytm prawie cały zrobiony
+
+7.06 mamy na 8:30 i mamy podwójne zajęcia
+dorobić menu i tablicę wyników
+plus poziomy trudności
+i będzie git
+
+jest już pauza niby

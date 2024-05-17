@@ -14,7 +14,7 @@ public class LevelController : MonoBehaviour
     {
         //delete later
         Application.targetFrameRate = -1;
-        QualitySettings.vSyncCount = 1;
+        QualitySettings.vSyncCount = 0;
 
         Application.runInBackground = false;
         this.fields = this.GetComponentsInChildren<field>();
