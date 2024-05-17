@@ -13,10 +13,7 @@ public class LevelController : MonoBehaviour
     void Start()
     {
         //delete later
-        Application.targetFrameRate = -1;
-        QualitySettings.vSyncCount = 0;
-
-        Application.runInBackground = false;
+        
         this.fields = this.GetComponentsInChildren<field>();
         foreach (field field in this.fields)
         {
@@ -57,6 +54,7 @@ public class LevelController : MonoBehaviour
         field target=null;
         first = new Vector2 (Mathf.Round(first.x), Mathf.Round(first.y));
         end = new Vector2(Mathf.Round(end.x), Mathf.Round(end.y));
+        //resetowanie pól
         foreach(field field in this.fields)
         {
             field.cost = 0;
@@ -117,12 +115,6 @@ public class LevelController : MonoBehaviour
     {
         return cost + Vector2.Distance(pos, finish);
     }
-   /* private float getCost(float weight,float cost)
-    {
-        float cost = 0;
-        
-        return weight+cost;
-    }*/
     public field getField(Vector2 position)
     {
         Vector2 toFind = new Vector2(Mathf.Round(position.x), Mathf.Round(position.y));

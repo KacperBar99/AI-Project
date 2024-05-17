@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     [SerializeField]
+    private float difficulty = 1.0f;
+    [SerializeField]
     private float defaultTimeScale = 1.0f;//poziom trudnoœci i tak dalej
     private bool isPaused = false;//pauza
     [SerializeField]
@@ -15,6 +17,10 @@ public class GameController : MonoBehaviour
     {
         this.isPaused = false;
         Time.timeScale = defaultTimeScale;
+        Application.targetFrameRate = -1;
+        QualitySettings.vSyncCount = 0;
+
+        Application.runInBackground = false;
     }
 
     // Update is called once per frame
@@ -43,7 +49,7 @@ public class GameController : MonoBehaviour
         }
         if(this.ghosts.Count == 0)
         {
-            SceneManager.LoadScene("Game", LoadSceneMode.Single);
+            SceneManager.LoadScene("Menu", LoadSceneMode.Single);
         }
     }
 }

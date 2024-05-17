@@ -98,7 +98,7 @@ public class Ghost : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene("Game", LoadSceneMode.Single);
+                SceneManager.LoadScene("Menu", LoadSceneMode.Single);
             }
 
         }
