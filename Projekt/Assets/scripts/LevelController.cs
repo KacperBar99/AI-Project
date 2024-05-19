@@ -38,15 +38,7 @@ public class LevelController : MonoBehaviour
             }
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
-    }
+    
 
     public field findPath(Vector2 first, Vector2 end)
     {

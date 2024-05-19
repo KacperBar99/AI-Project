@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI text2;
     private LevelController levelController;
+    private GameController gameController;
     private field currentField;
     private int points = 0;
     private bool powerUp = false;
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         this.levelController=GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();
+        this.gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         this.text.text = "0";
         this.points = 0;
         this.powerUpTime = 0.0f;
@@ -69,6 +71,7 @@ public class PlayerController : MonoBehaviour
     }
     public void getPoint(int value)
     {
+        this.gameController.PointsLess();
         this.points+=value;
         this.text.text=this.points.ToString();
     }
@@ -81,5 +84,9 @@ public class PlayerController : MonoBehaviour
     public bool isPowerUp() 
     {
         return powerUp;
+    }
+    public int getPoints()
+    {
+        return this.points;
     }
 }

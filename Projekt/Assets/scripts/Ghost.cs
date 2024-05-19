@@ -67,24 +67,6 @@ public class Ghost : MonoBehaviour
         }
         
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player" && !this.triggered)
-        {
-            this.triggered = true;
-            var player = collision.gameObject.GetComponent<PlayerController>();
-            if (player.isPowerUp())
-            {
-                player.getPoint(15);
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                SceneManager.LoadScene("Game", LoadSceneMode.Single);
-            }
-
-        }
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player" && !this.triggered)
@@ -98,6 +80,8 @@ public class Ghost : MonoBehaviour
             }
             else
             {
+                GameStatic.saveToLeaderBoards = true;
+                GameStatic.points=collision.gameObject.GetComponent<PlayerController>().getPoints();
                 SceneManager.LoadScene("Menu", LoadSceneMode.Single);
             }
 

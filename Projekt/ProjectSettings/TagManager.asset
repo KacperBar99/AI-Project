@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - LevelController
+  - Point
   layers:
   - Default
   - TransparentFX
