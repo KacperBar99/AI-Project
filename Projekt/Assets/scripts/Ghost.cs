@@ -38,7 +38,7 @@ public class Ghost : MonoBehaviour
         //spowolnienie ducha
         if (this.currentField.getWeight() > 1) this.speed = this.minSpeed;
         else this.speed = this.maxSpeed;
-        //ruch postaci
+        //ruch ducha
         this.transform.position += this.forward * Time.deltaTime * this.speed;
         if(Vector2.Distance(this.transform.position,this.currentField.getPosition())<=.125f)
         for (int i=0;i<this.path.Count;i++)

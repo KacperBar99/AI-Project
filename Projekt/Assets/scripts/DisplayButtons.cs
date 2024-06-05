@@ -8,15 +8,5 @@ public class DisplayButtons : MonoBehaviour
 
     public TextMeshProUGUI nickname;
     public TextMeshProUGUI res;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

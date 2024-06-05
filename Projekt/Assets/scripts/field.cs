@@ -44,7 +44,7 @@ public class field : MonoBehaviour
         {
             if(field.weight!=int.MaxValue)tmp.Add(field);
         }
-        this.neighbours = neighbours;
+        this.neighbours = tmp.ToArray();
     }
     public Vector2 getPosition()
     {

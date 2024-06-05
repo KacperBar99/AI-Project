@@ -12,7 +12,6 @@ public class LevelController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //delete later
         
         this.fields = this.GetComponentsInChildren<field>();
         foreach (field field in this.fields)
